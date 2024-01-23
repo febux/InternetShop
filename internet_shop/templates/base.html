@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{{ flatpage.title }}</title>
+        <title>{% block title %}{{ title }}{% endblock %}</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -38,7 +38,7 @@
         <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5">
-                <h1>{{ flatpage.content }}</h1>
+                {% block content %}{{ content }}{% endblock %}
             </div>
         </div>
         <!-- Bootstrap core JS-->

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<div style="display: inline-flex; flex-wrap: wrap; max-width: fit-content;">
+{% for product in products %}
+
+<div>
+        <div>
+                <span role="presentation">
+                        <img width="128px" height="128px" src="/media/{{product.image}}">
+                </span>
+        </div>
+        <div >
+                <a>
+                        <div role="button">
+                                {{product.name}}
+                        </div>
+                </a>
+        </div>
+<div>
+        <section>
+                <div>
+                        {{product.price}} р. :: {{product.stock}} ед.
+                </div>
+        </section>
+</div>
+
+</div>
+
+{% endfor %}
+</div>
+{% endblock %}
