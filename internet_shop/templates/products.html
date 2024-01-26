@@ -2,32 +2,33 @@
 {% block title %}Products{% endblock %}
 
 {% block content %}
-<div style="display: inline-flex; flex-wrap: wrap; max-width: fit-content;">
+<div style="display: inline-flex; max-width: fit-content;">
 {% for product in products %}
-
-<div>
-        <div>
-                <span role="presentation">
-                        <img width="128px" height="128px" src="/media/{{product.image}}">
-                </span>
+<div style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="container-content">
+                <img class="picture" src="/media/{{product.image}}" alt="product">
+                <p class="price">{{product.price}} р. :: {{product.stock}} ед.</p>
+                <a href="/{{product.id}}"><p class="name">{{product.name}}</p></a>
+                <p class="name">Описание: {{product.description|truncatewords:4}}</p>
         </div>
-        <div >
-                <a>
-                        <div role="button">
-                                {{product.name}}
-                        </div>
-                </a>
-        </div>
-<div>
-        <section>
-                <div>
-                        {{product.price}} р. :: {{product.stock}} ед.
-                </div>
-        </section>
 </div>
-
-</div>
-
 {% endfor %}
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
 </div>
 {% endblock %}
