@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Products{% endblock %}
+{% block products %}
+<div class="row">
+   <div class="col-md-12">
+      <div class="titlepage">
+         <h2>Our Products</h2>
+      </div>
+   </div>
+</div>
+<div class="row">
+   <div class="col-md-12">
+      <div class="our_products">
+         <div class="row">
+         {% if products %}
+            {% for product in products %}
+            <div onclick="location.href='/{{product.id}}';" class="col-md-4 margin_bottom1">
+               <div class="product_box">
+                  <figure><img src="/media/{{product.image}}" alt="#" width="200px" height="200px"/></figure>
+                  <h3>{{product.name}}</h3>
+               </div>
+            </div>
+            {% endfor %}
+            <div class="col-md-12">
+               <a class="read_more" href="#">See More</a>
+            </div>
+         {% else %}
+            <div class="col-md-4 margin_bottom1">
+            </div>
+            <div class="col-md-4 margin_bottom1">
+               <div class="product_box">
+                  <h3>Продуктов нет</h3>
+               </div>
+            </div>
+         {% endif %}
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+
