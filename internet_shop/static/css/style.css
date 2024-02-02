@@ -800,7 +800,7 @@ ul.btn li:last-child {
      margin: 0 50px;
 }
 
-.main_form .contactus {
+.main_form .sign_form {
      border: #fff solid 2px;
      padding: 0px 15px;
      margin-bottom: 25px;
@@ -1077,6 +1077,21 @@ ul.social_icon li a:hover {
 
 .laptop1_img figure img {
      width: 100%;
+}
+
+.cart {
+    font-size: 2rem;
+    border: #48ca95 solid 2px;
+    border-radius: 1px;
+    padding: 5px !important;
+    flex: 0 0 10%;
+    transition: ease-in all 0.5s;
+    text-align: center;
+}
+.cart:hover {
+    background: #48ca95;
+    transition: ease-in all 0.5s;
+    color: black;
 }
 
 

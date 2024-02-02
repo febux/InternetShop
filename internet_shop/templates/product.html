@@ -5,19 +5,14 @@
 <div class="row">
    <div class="col-md-12">
       <div class="our_products">
-         <div class="row">
-            <div class="col-md-4 margin_bottom1">
-               <div class="product_box">
+            <div class="col-md-4" style="text-align: center; max-width: 100%;">
                   <figure><img class="picture" src="/media/{{product.image}}" width="200px" height="200px" alt="product"></figure>
-                  <h2>{{product.name}}</h2>
+                  <h2 style="color: #2e9b9b;">{{product.name}}</h2>
                   <h2>{{product.price}} р.</h2>
-                  <h2>{{product.stock}} ед. </h2>
-                  <h2>{% if product.available %}Доступен{% else %}Недоступен{% endif %}</h2>
-                  <div><b>Описание:</b> {{product.description}}</div>
-                  <p><b>Категория товара:</b> {{product.subcategory.name}}</p>
-               </div>
+                  <h2>{{product.stock}} ед. {% if product.available %}<b style="color: green;">Доступен</b>{% else %}<b style="color: red;">Недоступен</b>{% endif %}</h2>
+                  <div style="text-align: justify;"><b>Описание:</b> {{product.description}}</div>
+                  <p style="text-align: justify;"><b>Категория товара:</b> {{product.subcategory.name}}</p>
             </div>
-         </div>
       </div>
    </div>
 </div>
