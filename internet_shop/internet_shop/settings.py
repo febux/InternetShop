@@ -76,6 +76,8 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+ACCOUNT_FORMS = {'signup': 'accounts.forms.CustomSignupForm'}
+
 WSGI_APPLICATION = 'internet_shop.wsgi.application'
 
 
