@@ -104,7 +104,13 @@
       <div class="three_box">
          <div class="container">
             <div class="row" style="justify-content: right;">
-               <div class="cart fa fa-shopping-cart">         0</div>
+               <div onclick="location.href='/cart/';" class="fa fa-shopping-cart fa-3">
+                    {% if cart.get_total_items > 0 %}
+                        <a href="{% url 'cart_details' %}">
+                            {{ cart.get_total_items }}
+                        </a>
+                    {% endif %}
+               </div>
             </div>
          </div>
       </div>
@@ -112,7 +118,7 @@
       <!-- products -->
       <div  class="products">
          <div class="container">
-            {% block products %}{% endblock %}
+            {% block content %}{% endblock %}
          </div>
       </div>
       <!-- end products -->

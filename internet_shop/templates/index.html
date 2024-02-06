@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Products{% endblock %}
-{% block products %}
+{% block content %}
 <div class="row">
    <div class="col-md-12">
       <div class="titlepage">
@@ -15,10 +15,18 @@
          <div class="row">
          {% if products %}
             {% for product in products %}
-            <div onclick="location.href='/{{product.id}}';" class="col-md-4 margin_bottom1">
+            <div class="col-md-4 margin_bottom1">
                <div class="product_box">
                   <figure><img src="/media/{{product.image}}" alt="#" width="200px" height="200px"/></figure>
-                  <h3>{{product.name}}</h3>
+
+                  <form class="cart-add" action="{% url 'cart_add' product.id %}" method="post">
+                  {% csrf_token %}
+                     <h3 onclick="location.href='/{{product.id}}';">{{product.name}}</h3>
+                     <div>
+                        <input type="number" style="width: 40px;" name="quantity" aria-invalid="true" id="id_quantity">
+                     </div>
+                     <input type="submit" value="+">
+                  </form>
                </div>
             </div>
             {% endfor %}
