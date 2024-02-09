@@ -37,4 +37,8 @@ def cart_details(request):
                                             'quantity': item['quantity'],
                                             'update': True
                                         })
-    return render(request, 'cart_details.html', {'cart': cart})
+    return render(
+        request,
+        'cart_details.html',
+        {'cart': cart, 'active': 'Cart'},
+    )
