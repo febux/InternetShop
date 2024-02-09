@@ -1,50 +1,228 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Products{% endblock %}
+{% block title %}Home{% endblock %}
+{% block about %}
+  <!-- about section -->
+  <section class="about_section layout_padding">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img_container">
+            <div class="img-box b1">
+              <img src="{% static 'images/a-1.jpg' %}" alt="">
+            </div>
+            <div class="img-box b2">
+              <img src="{% static 'images/a-2.jpg' %}" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <h2>
+              About Our Shop
+            </h2>
+            <p>
+              [about]
+            </p>
+            <a href="">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end about section -->
+{% endblock %}
 {% block content %}
-<div class="row">
-   <div class="col-md-12">
-      <div class="titlepage">
-         <h2>Our Products</h2>
+  <!-- product section -->
+  <section class="product_section ">
+    <div class="container">
+      <div class="product_heading">
+        <h2>
+          Top Sale Products
+        </h2>
       </div>
-   </div>
-</div>
-<div class="row">
-   <div class="col-md-12">
-      <div class="our_products">
-         <div class="row">
-         {% if products %}
-            {% for product in products %}
-            <div class="col-md-4 margin_bottom1">
-               <div class="product_box">
-                  <figure><img src="/media/{{product.image}}" alt="#" width="200px" height="200px"/></figure>
+      <div class="product_container">
+        <div class="box">
+          <div class="box-content">
+            <div class="img-box">
+              <img src="images/w3.png" alt="">
+            </div>
+            <div class="detail-box">
+              <div class="text">
+                <h6>
+                  Product
+                </h6>
+                <h5>
+                  <span>$</span> 5
+                </h5>
+              </div>
+              <div class="like">
+                <h6>
+                  Like
+                </h6>
+                <div class="star_container">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-box">
+            <a href="">
+              Add To Cart
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end product section -->
 
-                  <form class="cart-add" action="{% url 'cart_add' product.id %}" method="post">
-                  {% csrf_token %}
-                     <h3 onclick="location.href='/{{product.id}}';">{{product.name}}</h3>
-                     <div>
-                        <input type="number" style="width: 40px;" name="quantity" aria-invalid="true" id="id_quantity">
-                     </div>
-                     <input type="submit" value="+">
-                  </form>
-               </div>
-            </div>
-            {% endfor %}
-            <div class="col-md-12">
-               <a class="read_more" href="#">See More</a>
-            </div>
-         {% else %}
-            <div class="col-md-4 margin_bottom1">
-            </div>
-            <div class="col-md-4 margin_bottom1">
-               <div class="product_box">
-                  <h3>Продуктов нет</h3>
-               </div>
-            </div>
-         {% endif %}
-         </div>
+  <!-- product section -->
+  <section class="product_section ">
+    <div class="container">
+      <div class="product_heading">
+        <h2>
+          Feature Products
+        </h2>
       </div>
-   </div>
-</div>
+      <div class="product_container">
+        <div class="box">
+          <div class="box-content">
+            <div class="img-box">
+              <img src="images/w4.png" alt="">
+            </div>
+            <div class="detail-box">
+              <div class="text">
+                <h6>
+                  Feature
+                </h6>
+                <h5>
+                  <span>$</span> 5
+                </h5>
+              </div>
+              <div class="like">
+                <h6>
+                  Like
+                </h6>
+                <div class="star_container">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-box">
+            <a href="">
+              Add To Cart
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end product section -->
+
+  <!-- product section -->
+  <section class="product_section ">
+    <div class="container">
+      <div class="product_heading">
+        <h2>
+          New Arrivals
+        </h2>
+      </div>
+      <div class="product_container">
+        <div class="box">
+          <div class="box-content">
+            <div class="img-box">
+              <img src="images/w7.png" alt="">
+            </div>
+            <div class="detail-box">
+              <div class="text">
+                <h6>
+                  New product
+                </h6>
+                <h5>
+                  <span>$</span> 5
+                </h5>
+              </div>
+              <div class="like">
+                <h6>
+                  Like
+                </h6>
+                <div class="star_container">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-box">
+            <a href="">
+              Add To Cart
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end product section -->
+{% endblock %}
+
+{% block contact %}
+  <!-- contact section -->
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Contact Us
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+            <form action="">
+              <div>
+                <input type="text" placeholder="Your Name" />
+              </div>
+              <div>
+                <input type="text" placeholder="Phone Number" />
+              </div>
+              <div>
+                <input type="email" placeholder="Email" />
+              </div>
+              <div>
+                <input type="text" class="message-box" placeholder="Message" />
+              </div>
+              <div class="btn_box">
+                <button>
+                  SEND
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <div class="map_container">
+            <div class="map">
+              <div id="googleMap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
 {% endblock %}
 
