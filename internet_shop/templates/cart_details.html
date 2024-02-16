@@ -19,7 +19,7 @@
 
             <div class="d-flex justify-content-between align-items-center mb-4">
               <div>
-                <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
+                <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#" class="text-body">price <i
                       class="fa fa-angle-down mt-1"></i></a></p>
               </div>
             </div>
@@ -37,15 +37,23 @@
                   </div>
                   <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                     <button class="btn btn-link px-2"
-                      onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                      onclick="var input_obj = this.parentNode.querySelector('input[id=form-product]');
+                              input_obj.stepDown();
+                              if (decrease_quantity_product({{item.product.id}}, input_obj.value) == 0) {
+                                input_obj.stepUp();
+                              };">
                       <i class="fa fa-minus"></i>
                     </button>
 
-                    <input id="form1" min="1" max="{{ item.stock }}" name="quantity" value="{{ item.quantity }}" type="number"
+                    <input id="form-product" min="1" max="{{ item.stock }}" name="quantity" value="{{ item.quantity }}" type="number"
                       class="form-control form-control-sm" />
 
                     <button class="btn btn-link px-2"
-                      onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                      onclick="var input_obj = this.parentNode.querySelector('input[id=form-product]');
+                              input_obj.stepUp();
+                              if (increase_quantity_product({{item.product.id}}, input_obj.value) == 0) {
+                                input_obj.stepDown();
+                              };">
                       <i class="fa fa-plus"></i>
                     </button>
                   </div>
@@ -77,5 +85,55 @@
     </section>
   </div>
 </section>
+
+<script type="text/javascript">
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function increase_quantity_product(product_id, input_value) {
+  const csrftoken = getCookie('csrftoken');
+  axios.post(
+    `/cart/update/${product_id}/`,
+    {quantity: input_value},
+    {headers: {'X-CSRFToken': csrftoken}},
+  )
+  .then(function (response) {
+    return 1;
+  })
+  .catch(function (error) {
+    console.log(error);
+    return 0;
+  });
+}
+
+function decrease_quantity_product(product_id, input_value) {
+  const csrftoken = getCookie('csrftoken');
+  axios.post(
+    `/cart/update/${product_id}/`,
+    {quantity: input_value},
+    {headers: {'X-CSRFToken': csrftoken}},
+  )
+  .then(function (response) {
+    return true;
+  })
+  .catch(function (error) {
+    console.log(error);
+    return false;
+  });
+}
+</script>
 
 {% endblock %}

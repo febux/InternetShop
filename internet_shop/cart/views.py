@@ -1,3 +1,6 @@
+import json
+
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from shop.models import Product
@@ -20,6 +23,22 @@ def cart_add(request, product_id):
         return redirect('cart_details')
     else:
         return redirect('products')
+
+
+@require_POST
+def cart_product_update(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    body = json.loads(request.body)
+    if quantity := body.get('quantity'):
+        cart.add(
+            product=product,
+            quantity=int(quantity),
+            update_quantity=True,
+        )
+
+        return HttpResponse(status=200)
+    return HttpResponse(status=404)
 
 
 def cart_remove(request, product_id):

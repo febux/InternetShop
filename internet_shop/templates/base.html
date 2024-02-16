@@ -27,6 +27,7 @@
   <!-- Tweaks for older IEs-->
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -189,7 +190,7 @@
             </h5>
             <div>
               <div class="img-box">
-                <img src="images/location-white.png" width="18px" alt="">
+                <img src="{% static 'images/location-white.png' %}" width="18px" alt="">
               </div>
               <p>
                 [address]
@@ -197,7 +198,7 @@
             </div>
             <div>
               <div class="img-box">
-                <img src="images/telephone-white.png" width="12px" alt="">
+                <img src="{% static 'images/telephone-white.png' %}" width="12px" alt="">
               </div>
               <p>
                 [phone]
@@ -205,7 +206,7 @@
             </div>
             <div>
               <div class="img-box">
-                <img src="images/envelope-white.png" width="18px" alt="">
+                <img src="{% static 'images/envelope-white.png' %}" width="18px" alt="">
               </div>
               <p>
                 [email]
