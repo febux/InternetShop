@@ -14,6 +14,7 @@ class Order(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     paid = models.BooleanField(default=False)
+    mailed = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-date_created']

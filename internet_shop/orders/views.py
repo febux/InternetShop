@@ -20,7 +20,6 @@ def order_create(request):
                 )
 
             cart.clear()
-            send_order_email_task.delay(order.id)
             return render(request, 'order_created.html',
                           {'order': order})
     else:
