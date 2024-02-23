@@ -1,5 +1,7 @@
+from django.core import validators
 from django.core.cache import cache
 from django.db import models
+from django.db.models import CheckConstraint, Q
 
 
 def image_product_path(instance, filename):
@@ -48,8 +50,10 @@ class Subcategory(models.Model):
 class Product(models.Model):
     name = models.CharField(verbose_name="Название продукта", max_length=255)
     description = models.TextField(verbose_name="Описание")
-    price = models.FloatField(verbose_name="Цена")
-    stock = models.IntegerField(verbose_name="Наличие на складе")
+    price = models.FloatField(verbose_name="Цена",
+                              validators=[validators.MinValueValidator(limit_value=0.0)])
+    stock = models.IntegerField(verbose_name="Наличие на складе",
+                                validators=[validators.MinValueValidator(limit_value=0)])
 
     available = models.BooleanField(verbose_name="Доступность", default=False)
     image = models.ImageField(verbose_name="Изображение", upload_to=image_product_path, blank=True)
@@ -74,3 +78,13 @@ class Product(models.Model):
         ordering = ["name"]
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
+        constraints = (
+            CheckConstraint(
+                check=Q(price__gte=0.0),
+                name='price_gte'
+            ),
+            CheckConstraint(
+                check=Q(stock__gte=0),
+                name='stock_gte'
+            ),
+        )
