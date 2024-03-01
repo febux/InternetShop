@@ -18,6 +18,8 @@ def order_create(request):
                     price=item['price'],
                     quantity=item['quantity'],
                 )
+                item['product'].stock -= item['quantity']
+                item['product'].save()
 
             cart.clear()
             return render(request, 'order_created.html',

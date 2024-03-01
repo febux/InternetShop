@@ -3,18 +3,18 @@ from shop.models import Product
 
 
 class Order(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.EmailField()
-    address = models.CharField(max_length=250)
-    postal_code = models.CharField(max_length=20)
-    city = models.CharField(max_length=100)
+    first_name = models.CharField(verbose_name="Имя", max_length=50)
+    last_name = models.CharField(verbose_name="Фамилия", max_length=50)
+    email = models.EmailField(verbose_name="E-mail")
+    address = models.CharField(verbose_name="Адрес", max_length=250)
+    postal_code = models.CharField(verbose_name="Почтовый индекс", max_length=20)
+    city = models.CharField(verbose_name="Город", max_length=100)
 
-    date_created = models.DateTimeField(auto_now_add=True)
-    date_modified = models.DateTimeField(auto_now=True)
+    date_created = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
+    date_modified = models.DateTimeField(verbose_name="Дата изменения", auto_now=True)
 
-    paid = models.BooleanField(default=False)
-    mailed = models.BooleanField(default=False)
+    paid = models.BooleanField(verbose_name="Оплачено", default=False)
+    mailed = models.BooleanField(verbose_name="Уведомлено", default=False)
 
     class Meta:
         ordering = ['-date_created']
@@ -33,14 +33,16 @@ class OrderItem(models.Model):
         Order,
         related_name='items',
         on_delete=models.CASCADE,
+        verbose_name="Заказ",
     )
     product = models.ForeignKey(
         Product,
         related_name='order_items',
         on_delete=models.CASCADE,
+        verbose_name="Продукт",
     )
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.PositiveIntegerField(default=1)
+    price = models.DecimalField(verbose_name="Цена продукта", max_digits=10, decimal_places=2)
+    quantity = models.PositiveIntegerField(verbose_name="Количество продукта", default=1)
 
     def __str__(self):
         return '{}'.format(self.id)
