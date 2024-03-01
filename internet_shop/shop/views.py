@@ -8,7 +8,7 @@ class ProductList(ListView):
     model = Product
     template_name = "products.html"
     context_object_name = 'products'
-    paginate_by = 3
+    paginate_by = 100
     ordering = ["subcategory"]
 
     def get_context_data(self, **kwargs):

@@ -3,6 +3,9 @@ from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
 from .tasks import send_order_email_task
+from rest_framework import generics
+from .models import Order
+from .serializers import OrderSerializer
 
 
 def order_create(request):
@@ -28,3 +31,8 @@ def order_create(request):
         form = OrderCreateForm
     return render(request, 'order_create.html',
                   {'cart': cart, 'form': form})
+
+
+class OrderDetail(generics.RetrieveAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer

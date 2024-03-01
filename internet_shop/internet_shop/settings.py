@@ -25,6 +25,7 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,6 +59,9 @@ MIDDLEWARE = [
 
     # "django.middleware.cache.UpdateCacheMiddleware",
     # "django.middleware.cache.FetchFromCacheMiddleware",
+
+    # 'rest_framework.middleware.AuthenticationMiddleware',
+    # 'rest_framework.middleware.AuthorizationMiddleware',
 ]
 
 ROOT_URLCONF = 'internet_shop.urls'
