@@ -25,7 +25,6 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,9 +39,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    'rest_framework',
+    'django_filters',
+    'drf_spectacular',
+
     'shop',
     'cart',
     'orders',
+    'internet_shop__api',
 ]
 
 MIDDLEWARE = [
@@ -59,9 +63,6 @@ MIDDLEWARE = [
 
     # "django.middleware.cache.UpdateCacheMiddleware",
     # "django.middleware.cache.FetchFromCacheMiddleware",
-
-    # 'rest_framework.middleware.AuthenticationMiddleware',
-    # 'rest_framework.middleware.AuthorizationMiddleware',
 ]
 
 ROOT_URLCONF = 'internet_shop.urls'
@@ -222,4 +223,27 @@ LOGGING = {
             'propagate': False,
         },
     }
+}
+
+# DRF Configuration
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# Spectacular configuration
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Internet Shop API",  # название проекта
+    "VERSION": "0.0.1",  # версия проекта
+    "SERVE_INCLUDE_SCHEMA": False,  # исключить эндпоинт /schema
+    "SWAGGER_UI_SETTINGS": {
+        "filter": True,  # включить поиск по тегам
+    },
+    "COMPONENT_SPLIT_REQUEST": True,
 }
