@@ -6,6 +6,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from .settings import MEDIA_URL, DEBUG, MEDIA_ROOT
 
 urlpatterns = [
+    path("__debug__/", include("debug_toolbar.urls")),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('shop.urls')),
